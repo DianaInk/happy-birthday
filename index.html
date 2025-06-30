@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Соиздание</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="images">
+        <img src="img/ВикаСвет.png" alt="" id="img1" width="220px" height="200px">
+        <img src="img/НанаСвет.png" alt="" id="img2" width="220px" height="200px">
+        <img src="img/ЛизаСвет.png" alt="" id="img3" width="220px" height="200px">
+        <img src="img/ДианаСвет.png" alt="" id="img4" width="220px" height="200px">
+        <img src="img/НастяСвет.png" alt="" id="img5" width="220px" height="200px">
+        <img src="img/НанаУгас.png" alt="" id="img6" width="220px" height="200px">
+    </div>
+    <div class="footer">
+        <div class="text" id="textContainer">
+            <p class="hidden">Однажды в далёком космосе...</p>
+            <p class="hidden">Появились две прекрасные звёздочки</p>
+            <p class="hidden">Звёздочки жили душа в душу долгое время, но в какой-то момент им пришлось разойтись...</p>
+            <p class="hidden">Первая звёздочка долго блуждала, но в конце концов нашла других близких себе звёздочек</p>
+            <p class="hidden">Вторая звёздочка скиталась по просторам космоса,
+                 повстречала много новых звёзд и планет</p>
+            <p class="hidden">но так и не нашла таких же ярких звёзд как она</p>
+            <p class="hidden">И начала угасать...</p>
+            <p class="hidden">И вдруг она вспомнила, что две звезды дали обещание друг другу 
+                встретиться снова в день их рождения
+            </p>
+            <p class="hidden">И когда они наконец-то встретились, звёздочка увидела в окружении сестры 
+                три другие яркие звезды
+            </p>
+            <p class="hidden">Сестра решила познакомить её со своими подругами</p>
+            <p class="hidden">Звёздочка была рада за сестру, но в то же время она опечалилась, 
+                ведь так и не смогла найти близких себе звёздочек
+            </p>
+            <p class="hidden">Поэтому она решила поделиться своей грустью</p>
+            <p class="hidden">Звёздочки выслушали её и удивились</p>
+            <p class="hidden">Они считали сестру своей подруги очень милой и интересной</p>
+            <p class="hidden">А ещё они поняли, что им нравится с ней общаться</p>
+            <p class="hidden">Поэтому они захотели, чтобы Звёздочка осталась с ними</p>
+            <p class="hidden">И с тех пор по вселенной блуждают 5 прекрасных звёздочек, освещая дорогу друг другу</p>
+            <p class="hidden">В конце концов они стали очень близки</p>
+            <p class="hidden">И в честь рождения двух звёзд их подруги решили сделать им подарок</p>
+            <p class="hidden">Выберите свою звёздочку</p>
+        </div>
+    </div>
+    <div class="dialog">
+            <div class="back">
+                <img src="img/назад.jpg" alt="" width="170px" height="170px">
+                <button id="prevButton">Назад</button>
+            </div>
+            <div class="forward">
+                <img src="img/вперёд.jpg" alt="" width="100px" height="100px">
+                <button id="nextButton">Вперёд</button>
+            </div>
+        </div>
+    <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            const paragraphs = document.querySelectorAll('#textContainer p');
+            const prevButton = document.getElementById('prevButton');
+            const nextButton = document.getElementById('nextButton');
+            const stars = document.querySelectorAll('.star');
+            
+            const images = {
+                img1: document.getElementById('img1'),
+                img2: document.getElementById('img2'),
+                img3: document.getElementById('img3'),
+                img4: document.getElementById('img4'),
+                img5: document.getElementById('img5'),
+                img6: document.getElementById('img6')
+            };
+            
+            let currentIndex = -1;
+            let initialized = false;
+
+            function hideAllImages() {
+                for (const img in images) {
+                    images[img].style.display = 'none';
+                    images[img].classList.remove('show', 'twinkle', 'clickable');
+                }
+            }
+
+            function updateButtons() {
+                prevButton.disabled = currentIndex <= 0;
+                nextButton.disabled = currentIndex >= paragraphs.length - 1;
+            }
+
+            function showImageWithAnimation(imgElement) {
+                imgElement.style.display = 'block';
+                setTimeout(() => {
+                    imgElement.classList.add('show');
+                    if (!imgElement.id.includes('Угас')) {
+                        imgElement.classList.add('twinkle');
+                    }
+                }, 50);
+            }
+
+            function makeStarsClickable() {
+                images.img1.classList.add('clickable');
+                images.img2.classList.add('clickable');
+                
+                images.img1.onclick = () => {
+                    window.location.href = "vika.html"; // Замените на нужный URL
+                };
+                
+                images.img2.onclick = () => {
+                    window.location.href = "nana.html"; // Замените на нужный URL
+                };
+            }
+
+            function removeStarsClickable() {
+                images.img1.classList.remove('clickable');
+                images.img2.classList.remove('clickable');
+                
+                images.img1.onclick = null;
+                images.img2.onclick = null;
+            }
+
+            function updateImages(index) {
+                hideAllImages();
+                removeStarsClickable();
+                
+                if (index === -1) return;
+                
+                if (index === 1 || index === 2) {
+                    showImageWithAnimation(images.img1);
+                    showImageWithAnimation(images.img2);
+                }
+                else if (index === 3) {
+                    showImageWithAnimation(images.img1);
+                }
+                else if (index === 4 || index === 5) {
+                    showImageWithAnimation(images.img2);
+                }
+                else if (index === 6 || index === 7) {
+                    showImageWithAnimation(images.img6);
+                }
+                else if (index >= 8 && index <= 14) {
+                    showImageWithAnimation(images.img1);
+                    showImageWithAnimation(images.img3);
+                    showImageWithAnimation(images.img4);
+                    showImageWithAnimation(images.img5);
+                    showImageWithAnimation(images.img6);
+                }
+                else if (index >= 15 && index <= 17) {
+                    showImageWithAnimation(images.img1);
+                    showImageWithAnimation(images.img2);
+                    showImageWithAnimation(images.img3);
+                    showImageWithAnimation(images.img4);
+                    showImageWithAnimation(images.img5);
+                }
+                else if (index === 18) {
+                    showImageWithAnimation(images.img3);
+                    showImageWithAnimation(images.img4);
+                    showImageWithAnimation(images.img5);
+                }
+                else if (index === 19) {
+                    showImageWithAnimation(images.img1);
+                    showImageWithAnimation(images.img2);
+                    makeStarsClickable();
+                }
+            }
+
+            function showParagraph(index) {
+                if (currentIndex >= 0) {
+                    paragraphs[currentIndex].classList.add('hidden');
+                }
+                
+                currentIndex = index;
+                paragraphs[currentIndex].classList.remove('hidden');
+                updateImages(currentIndex);
+                updateButtons();
+            }
+
+            function showNextParagraph() {
+                let newIndex = currentIndex + 1;
+                
+                if (newIndex >= paragraphs.length) {
+                    return;
+                }
+                
+                if (!initialized) {
+                    initialized = true;
+                    showParagraph(0);
+                    return;
+                }
+                
+                showParagraph(newIndex);
+            }
+
+            function showPrevParagraph() {
+                let newIndex = currentIndex - 1;
+                
+                if (newIndex < -1) {
+                    return;
+                }
+                
+                if (newIndex === -1) {
+                    if (currentIndex >= 0) {
+                        paragraphs[currentIndex].classList.add('hidden');
+                    }
+                    currentIndex = -1;
+                    hideAllImages();
+                    initialized = false;
+                    updateButtons();
+                    return;
+                }
+                
+                showParagraph(newIndex);
+            }
+
+            nextButton.addEventListener('click', showNextParagraph);
+            prevButton.addEventListener('click', showPrevParagraph);
+
+            updateButtons();
+            hideAllImages();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // ... (остальной JavaScript остаётся без изменением до функции makeStarsClickable)
+            
+            function makeStarsClickable() {
+                images.img1.classList.add('clickable');
+                images.img2.classList.add('clickable');
+                
+                // Добавляем эффект "подсказки" при первом показе
+                setTimeout(() => {
+                    images.img1.style.transform = 'scale(1.1)';
+                    images.img2.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        images.img1.style.transform = 'scale(1)';
+                        images.img2.style.transform = 'scale(1)';
+                    }, 1000);
+                }, 500);
+                
+                images.img1.onclick = () => {
+                    document.body.style.cursor = 'wait';
+                    setTimeout(() => {
+                        window.location.href = "vika.html";
+                    }, 300);
+                };
+                
+                images.img2.onclick = () => {
+                    document.body.style.cursor = 'wait';
+                    setTimeout(() => {
+                        window.location.href = "nana.html";
+                    }, 300);
+                };
+            }
+            
+            // ... (остальной JavaScript остаётся без изменений)
+        });
+        
+    </script>
+</body>
+</html>

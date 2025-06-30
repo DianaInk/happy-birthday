@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylena.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>ЗВЕЗДОЧКА НАСТЯ</h1>
+        <div class="container-header">
+            <div class="container-img-header">
+                <div class="img-header">
+                    <img src="img/нассстя (1).jpg" alt="">
+                </div>
+                <div class="seal" id="seal">
+                    <img src="img/seal (1).png" alt="">
+                </div>
+            </div>
+                
+            <div class="inf">
+                <h2>Имя: Анастасия</h2>
+                <h2>Дата рождения: 01.07.2006</h2>
+                <div class="container-ballons">
+                    <div class="balloon blue">
+                        <img src="img/balloons-blue.png" alt="">
+                    </div>
+                    <div class="balloon pink">
+                        <img src="img/balloons-pink.png" alt="">
+                    </div>
+                    <div class="balloon orange">
+                        <img src="img/balloons-orange.png" alt="">
+                    </div>
+                    <div class="balloon darkgreen">
+                        <img src="img/balloons-darkgreen.png" alt="">
+                    </div>
+                    <div class="balloon red">
+                        <img src="img/balloons-red.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section>
+        <h1>ПЕРВОЕ ВПЕЧАТЛЕНИЕ</h1>
+        <div class="container-img">
+
+            <div class="img-and-bg left">
+                <div class="img-together">
+                    <img src="img/лиза и настя.jpg" alt="">
+                </div>
+                <h2>Когда я тебя увидела, подумала, что ты довольно холодная и отстранëнная, но мои суждения оказались в корне неверными! 
+                    Ты невероятно милая девушка, отчасти даже робка и застенчивая. Конечно, это впечатление тоже немного порушилось, 
+                    когда у нас с тобой начался период срачей и споров, хд. Но в итоге я считаю тебя классной и интересной личностью, 
+                    по-прежнему милой и немного робкой, но при этом умеющую отстаивать свои границы</h2>
+                <div class="bg"></div>
+            </div>
+
+            <div class="img-and-bg">
+                <h2 class="right-h2">До того как мы познакомились, я думала, что ты должна быть более дерзкая, чем Вика. Но оказалось, что ты более стеснительная и тихая. 
+                    Мне хотелось с тобой познакомиться, но не знала с чего начать. Потом подключилась к тебе и Лизе и мы вместе продолжили разговаривать о к-поп. 
+                    Мне в тот же день захотелось с тобой дружить и продолжать общаться</h2>
+                <div class="img-together right">
+                    <img src="img/я и настя (1).png" alt="">
+                </div>
+                <div class="bg right-bg"></div>
+            </div>
+
+            <div class="img-and-bg left">
+                <div class="img-together">
+                    <img src="img/диана и настя.jpg" alt="">
+                </div>
+                <h2>Мне нравится в тебе твоё стремление. Ты всегда хотела со мной общаться ближе. Ты очень добрая и красивая девушка. 
+                    Ты сильная и я знаю об этом, даже в тяжёлые моменты ты справишься и мы тебя в этом поддержим! Ты очень классная, 
+                    я уверена что в будущем тебя ждёт успех!</h2>
+                <div class="bg"></div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <a href="pages/congratulationsNANA.html">
+            <div class="container-footer">
+                <div class="seal-footer">
+                </div>
+                <h1>Перейти к поздравлению</h1>
+            </div>
+        </a>
+    </footer>    
+
+    <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Обработчик для всех кубиков
+    document.querySelectorAll('.balloon').forEach(cube => {
+        cube.addEventListener('click', function() {
+            // Добавляем класс для скрытия текущего кубика
+            this.classList.add('hidden');
+            
+            // Восстанавливаем через 3 секунды
+            setTimeout(() => {
+                this.classList.remove('hidden');
+            }, 1000);
+        });
+    });
+});
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Анимация для всех элементов с классом .box
+        gsap.utils.toArray('.img-and-bg').forEach(box => {
+            gsap.fromTo(box, {
+                opacity: 0,
+                y: 100 // Начальное смещение вниз
+            }, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power1.out",
+                scrollTrigger: {
+                    trigger: box,
+                    start: "top 90%", // Старт анимации когда верх элемента на 90% высоты экрана
+                    end: "top 30%",   // Конец анимации когда верх элемента на 30% высоты экрана
+                    toggleActions: "play none none reverse", // play - при входе, reverse - при выходе
+                }
+            });
+        });
+
+            // Создаем timeline и повторяем его 3 раза
+    const tl = gsap.timeline({ 
+      repeat: 2,            // Количество повторов (2 раза)
+      repeatDelay: 0,       // Пауза между повторами
+      defaults: { 
+        ease: "power1.inOut" // Плавность для всех анимаций в timeline
+      }
+    });
+
+    const cube = document.getElementById('seal');
+        const durationSlider = document.getElementById('duration');
+        const angleSlider = document.getElementById('angle');
+        
+        // Создаем анимацию покачивания
+        const wobbleAnimation = gsap.to(cube, {
+            rotation: 45, // начальный угол
+            duration: 0.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            paused: true // начнем после настройки
+        });
+        
+        // Запускаем анимацию
+        wobbleAnimation.play();
+    </script>
+</body>
+</html>

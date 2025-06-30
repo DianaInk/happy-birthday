@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'Compliance Sans';
+    src: url(font/Faithful.ttf);
+}
+
+body
+{
+    font-family: 'Compliance Sans', sans-serif;
+    background-image: url(img/background.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    margin: 0;
+    padding: 0;
+}
+
+h1
+{
+    padding-bottom: 20px;
+    font-size: 50px;
+    color: rgb(223, 52, 52);
+}
+img
+{
+    width: 40%;
+}
+.info 
+{
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(57, 17, 17, 0.8);
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.648);
+    border-radius: 5px;
+    font-size: 45px;
+    color: rgb(207, 207, 207);
+}
+
+.photo
+{
+    background: linear-gradient(#000000, #bb2121);
+    background-size: 100% auto;
+    background-position: bottom;
+}
+.photo h1
+{
+    align-items: center;
+    text-align: center;
+    color: rgb(207, 207, 207);
+}
+.photo-1
+{
+    display: flex;
+    gap: 30px;
+    padding-bottom: 30px;
+}
+.photo-1 p
+{
+    flex-grow: 1;
+    font-size: 35px;
+    color: rgb(207, 207, 207);
+}
+.photo-1 img
+{
+    border-color: #6f1515;
+    border-style: dashed;
+    border-radius: 1rem;
+    border-width: 1rem;
+}
+.photo-2
+{
+    display: flex;
+    gap: 30px;
+    padding-bottom: 30px;
+}
+.photo-2 p
+{
+    flex: 1;
+    font-size: 35px;
+    color: rgb(207, 207, 207);
+}
+.photo-2 img
+{
+    border-color: #bb2121;
+    border-style: dashed;
+    border-radius: 1rem;
+    border-width: 1rem;
+}
+
+footer
+{
+    background: linear-gradient(#bb2121, #000000);
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+footer p
+{
+    color: rgb(207, 207, 207);
+    font-size: 30px;
+}
+.party img
+{
+    width: 15%;
+}
+.party p
+{
+    color: rgb(207, 207, 207);
+    font-size: 40px;
+    text-decoration: none;
+}
